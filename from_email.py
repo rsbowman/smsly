@@ -45,7 +45,6 @@ class Post(object):
     def write_attachments(self, media_path):
         for filename, data in self._attachments.items():
             file_path = os.path.join(media_path, filename)
-            curpath = os.path.abspath(os.curdir)
             with open(file_path, "w") as f:
                 f.write(data)
 
