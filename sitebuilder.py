@@ -204,6 +204,6 @@ if __name__ == '__main__':
         freezer.freeze()
     elif len(sys.argv) > 1 and sys.argv[1] == "deploy":
         os.system("{} sync {} {}".format(config.S3CMD_PATH,
-            config.BUILD_DIR, config.S3BUCKET))
+            config.BUILD_PATH, config.S3BUCKET))
     else:
         app.run(debug=True)

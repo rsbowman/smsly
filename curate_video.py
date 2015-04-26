@@ -72,7 +72,7 @@ def main(argv):
     ensure we have videos in all the correct formats.  It can also be used
     standalone.  This is useful, for example, if you want to change encoding
     parameters, or especially if there are one or two videos that are
-    sideways...  
+    sideways...
     """
 
     cmd = argv[1]
