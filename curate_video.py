@@ -20,6 +20,9 @@ def rotate_video(filename):
     os.unlink(filename)
     shutil.move(tmp_filename, filename)
 
+## Very finnicky commands I found with a lot of searching on the web...
+## These seem to work great for me, converting from mp4, MOV, and 3gp
+## to mp4 and webm.
 av_to_webm_cmd = "{} -i {} -c:v libvpx -b:v 128k -c:a libvorbis {}"
 av_to_mp4_cmd = "{} -i {} -c:v libx264 -c:a libmp3lame -q:a 3 -ar:a 44100 {}"
 
@@ -65,6 +68,13 @@ def curate_directory(path):
                     transcode(filename, base + ".webm", "webm")
 
 def main(argv):
+    """ this script (sepcifically, `curate_directory`) is used in main.py to
+    ensure we have videos in all the correct formats.  It can also be used
+    standalone.  This is useful, for example, if you want to change encoding
+    parameters, or especially if there are one or two videos that are
+    sideways...  
+    """
+
     cmd = argv[1]
     media_path = config.MEDIA_PATH
     if cmd == "curate":

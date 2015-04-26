@@ -10,7 +10,6 @@ from PIL import Image
 import config
 from curate_video import poster_filename_for
 
-## originally had width="640" height="264" in video tag
 videojs_template = """
 <div align="center" class="embed-responsive embed-responsive-4by3">
 <video id="{id}" class="video-js vjs-default-skin embed-responsive-item"
@@ -20,10 +19,6 @@ videojs_template = """
  <p>Your browser does not support this video content.</p>
 </video>
 </div>"""
-
-
-## <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
-## <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
 
 class MediaType:
     image = "image"
@@ -153,7 +148,7 @@ class PageCollection(object):
 
 posts_bp = Blueprint("posts_bp", __name__)
 
-def create_app(config=config):# create the application object
+def create_app(config=config):
     app = Flask(__name__)
     app.config.update(
         DEBUG=True,
@@ -196,11 +191,12 @@ def get_media(filename):
     media_path = current_app.config.get("MEDIA_PATH")
     return send_from_directory(media_path, filename)
 
+## I don't want search engines indexing my site.  You might want to change
+## this, of course :)
 @posts_bp.route("/robots.txt")
 def robots_txt():
     return Response("User-agent: *\nDisallow: /", mimetype="text/plain")
 
-# start the server with the 'run()' method
 if __name__ == '__main__':
     app = create_app(config)
     if len(sys.argv) > 1 and sys.argv[1] == "build":
