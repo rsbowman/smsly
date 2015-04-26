@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for post in posts.items %}
+        {% if post.title %}
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.date }}</p>
+        {% else %}
+            <h2>{{ post.date.strftime("%m-%d-%Y") }}</h2>
+        {% endif %}
+        {{ post.html|safe }}
+        {% for media_html in post.media_html %}
+            {{ media_html|safe }}
+        {% endfor %}
+    {% endfor %}
+    <br>
+    {% if posts.has_prev %}
+    <a href="{{ url_for('posts_bp.index', page=posts.prev_num) }}">
+        &lt;&lt; Newer posts</a>
+    {% endif %} 
+    {% if posts.has_next and posts.has_prev %}
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    {% endif %}
+    {% if posts.has_next %}
+    <a href="{{ url_for('posts_bp.index', page=posts.next_num) }}">
+        Older posts &gt;&gt;</a>
+    {% endif %}
+{% endblock content %}

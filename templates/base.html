@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Awesome website</title>
+        <!-- include whatever stylesheets you want here -->
+    </head>
+    <body>
+        <div class="container">
+            <h1><a href="{{ url_for('posts_bp.index') }}">
+                Awesome website name</a></h1>
+            <p>Witty tagline here</p>
+            {% block content %}
+            <p>The content goes here.  Yay!</p>
+            {% endblock content %}
+        </div>
+    </body>
+</html>
